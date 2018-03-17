@@ -24,7 +24,7 @@ sosSettings.controller('settingsController', ['$scope', '$http', '$timeout', fun
     }
 
     $scope.getAllYogaBlogs = function() {
-        $http.get('api/blog/getAllBlogs').then(function(res) {
+        $http.get('/api/blog/getAllBlogs').then(function(res) {
             $scope.yoga.blogs = res.data;
         });
     }
