@@ -232,20 +232,25 @@ Service.prototype.readAllBlogs = function() {
     var blogs = [];
     return new Promise(
         function(resolve, reject) {
-            var data = fs.readdirSync('./bin/blogs');
+            try {
+                var data = fs.readdirSync('./bin/blogs');
 
-            var length = data.length;
-            data.forEach(function(fileName, i) {
-                var event = readFilePromisified('./bin/blogs/' + fileName).then((blog, error) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        blogs.push(blog);
-                        if (i == length - 1)
-                            resolve(blogs);
-                    }
+                var length = data.length;
+                data.forEach(function(fileName, i) {
+                    var event = readFilePromisified('./bin/blogs/' + fileName).then((blog, error) => {
+                        if (error) {
+                            reject(error);
+                        } else {
+                            blogs.push(blog);
+                            if (i == length - 1)
+                                resolve(blogs);
+                        }
+                    })
                 })
-            })
+            }
+            catch (err) {
+                resolve(blogs);
+            }
 
         });
 
@@ -255,21 +260,26 @@ Service.prototype.getAllSanthBlogs = function() {
     var blogs = [];
     return new Promise(
         function(resolve, reject) {
-            var data = fs.readdirSync('./bin/santhiblogs');
+            try{
+                var data = fs.readdirSync('./bin/santhiblogs');
 
-            var length = data.length;
-            data.forEach(function(fileName, i) {
-                var event = readFilePromisified('./bin/santhiblogs/' + fileName).then((blog, error) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        blogs.push(blog);
-                        if (i == length - 1)
-                            resolve(blogs);
-                    }
+                var length = data.length;
+                data.forEach(function(fileName, i) {
+                    var event = readFilePromisified('./bin/santhiblogs/' + fileName).then((blog, error) => {
+                        if (error) {
+                            reject(error);
+                        } else {
+                            blogs.push(blog);
+                            if (i == length - 1)
+                                resolve(blogs);
+                        }
+                    })
                 })
-            })
 
+            }
+            catch (err) {
+                resolve(blogs);
+            }
         });
 
 };
@@ -415,20 +425,25 @@ Service.prototype.ReadAllNews = function() {
     var events = [];
     return new Promise(
         function(resolve, reject) {
-            var data = fs.readdirSync('./bin/news');
+            try {
+                var data = fs.readdirSync('./bin/news');
 
-            var length = data.length;
-            data.forEach(function(fileName, i) {
-                var event = readFilePromisified('./bin/news/' + fileName).then((event, error) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        events.push(event);
-                        if (i == length - 1)
-                            resolve(events);
-                    }
+                var length = data.length;
+                data.forEach(function(fileName, i) {
+                    var event = readFilePromisified('./bin/news/' + fileName).then((event, error) => {
+                        if (error) {
+                            reject(error);
+                        } else {
+                            events.push(event);
+                            if (i == length - 1)
+                                resolve(events);
+                        }
+                    })
                 })
-            })
+            }
+            catch (err) {
+                resolve(events);
+            }
 
         });
 };
