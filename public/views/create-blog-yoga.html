@@ -44,7 +44,7 @@
 
                     <div class="card row" ng-repeat="blog in yoga.blogs">
                       <div class="card-body">
-                      <image src="{{blog.image}}" alt="Yoga">
+                      <image src="{{blog.image}}" alt="Yoga" onerror="this.onerror=null;this.src='../bin/santhiblogs/shanthi.jpg'">
                       <div class="details">
                           <h2>{{blog.title}}</h2>
                           <p>{{blog.highlightText}} <a href="#">More...</a></p>

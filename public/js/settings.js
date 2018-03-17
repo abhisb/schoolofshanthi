@@ -16,7 +16,8 @@ sosSettings.controller('settingsController', ['$scope', '$http', '$timeout', fun
     $scope.news = {};
     $scope.newsDataSet = [];
     $scope.yoga = {};
-    $scope.yoga.blogs = [];    
+    $scope.shanthi = {};
+    $scope.shanthi.blogs = [];    
     $scope.logout = function() {
         $http.get('/api/logout').then(function() {
             location.href = '../#/login';
@@ -29,6 +30,14 @@ sosSettings.controller('settingsController', ['$scope', '$http', '$timeout', fun
         });
     }
     $scope.getAllYogaBlogs();
+
+    $scope.getAllShanthiBlogs = function() {
+        $http.get('api/santhiblog/getAllBlogs').then(function(res) {
+            $scope.shanthi.blogs = res.data;
+        });
+    }
+    $scope.getAllShanthiBlogs();
+
     $scope.saveNews = function() {
 
         if (!$scope.news.title || !$scope.news.description || !$scope.news.highlight) {
