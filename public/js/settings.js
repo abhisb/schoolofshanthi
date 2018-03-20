@@ -89,11 +89,15 @@ sosSettings.controller('settingsController', ['$scope', '$http', '$timeout', fun
          var data = {
             "id": id
         }
-        $http.post('/api/news/delete', data).then(function(res) {            
-            getAllNews();
+        $http.post('/api/news/delete', data).then(function(res) { 
             $scope.news.title = '';
             $scope.news.description = '';
             $scope.news.highlight = '';
+            getAllNews();
+            var currentUrl = window.location.href;
+            console.log(currentUrl)
+            window.location.href = currentUrl;
+            //window.location.reload();
         });
         console.log(id)
     }
@@ -253,7 +257,7 @@ sosSettings.controller('eventController', ['$scope', '$http', '$routeParams', fu
         eve.endDate = $('#datetimepicker2').data("DateTimePicker").date().format("DD/MMM/YYYY");
         eve.regClosesOn = $('#datetimepicker3').data("DateTimePicker").date().format("DD/MMM/YYYY");
         eve.description = $('#summernote').summernote('code');
-
+        eve.isPrime = $scope.event.isPrime;
         $http.post("/api/edit/event", eve).then(function(response) {
             $scope.successAlert = response.data;
         });

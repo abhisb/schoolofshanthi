@@ -165,17 +165,17 @@
 <section class="row">
     <section class="col-md-12">
         <h3 class="ml-17">PROGRAMS</h3>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img src="Content/img/trending/himalayas.jpg" alt="...">
+        <div class="col-sm-6 col-md-3" ng-repeat="event in events" ng-if="event.isPrime">
+            <div class="thumbnail" ng-if="event.isPrime">
+                <img src="{{event.imageSrc}}" alt="...">
                 <div class="caption">
-                    <h3> Workshops and Spiritual Retreats</h3>
-                    <p class="mb-25">With a warm and loving approach, Santhi gives the audience an opportunity to understand themselves and provides tools to improve the quality of life in his workshops.</p>
-                    <p><a href="/#/program/workshops" class="btn btn-primary" role="button">Read More..</a></p>
+                    <h3>{{event.startMonth}} '{{event.startYear}}</h3>
+                    <p class="mb-25" ng-bind-html="event.description | to_trusted"></p>
+                    <p><a href="/#/event/{{event.id}}" class="btn btn-primary" role="button">Read More..</a></p>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-3">
+<!--         <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
                 <img src="Content/img/trending/lamp.jpg">
                 <div class="caption">
@@ -201,6 +201,6 @@
                     <blockquote cite="https://www.facebook.com/SchoolOfSanthiIndia/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/SchoolOfSanthiIndia/">School of Santhi - India</a></blockquote>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 </section>

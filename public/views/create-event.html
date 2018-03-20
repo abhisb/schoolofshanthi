@@ -1,5 +1,5 @@
 <section class="row">
-<form class="form-horizontal">
+<form class="form-horizontal" name="eventform">
     <h3 class="text-center">CREATE A NEW EVENT</h3>
     <section class="col-md-12">
                  <div class="alert alert-success col-md-12" ng-hide="!successAlert">
@@ -9,7 +9,11 @@
         <section class="form-group">
             <label class="control-label col-md-4">Name :</label>
             <section class="col-md-8"><input class="form-control" ng-model="event.name"/></section>
-        </section>     
+        </section>
+        <section class="form-group">
+              <label class="control-label col-md-4">Is it a prime event? :</label>
+              <section class="col-md-8" style="padding-top: 9px;"><input id="isPrime" ng-model="event.isPrime" type="checkbox" value=""></section>
+        </section>      
         <section class="form-group">
             <label class="control-label col-md-4">Type :</label>
             <section class="col-md-8"><select class="selectpicker" data-width="100%" ng-model="event.type">
