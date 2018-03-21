@@ -160,47 +160,29 @@
             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/uAqMsWaVSIY" allowfullscreen></iframe>
         </div>
     </section>
+    <div class="col-sm-12 col-md-12 pad-0">
+            <div class="thumbnail mediasocial">
+                <div class="fb-page" data-href="https://www.facebook.com/SchoolOfSanthiIndia/" data-tabs="timeline" data-height="460px" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                    <blockquote cite="https://www.facebook.com/SchoolOfSanthiIndia/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/SchoolOfSanthiIndia/">School of Santhi - India</a></blockquote>
+                </div>
+            </div>
+        </div>
 </section>
 </section>
 <section class="row">
     <section class="col-md-12">
         <h3 class="ml-17">PROGRAMS</h3>
         <div class="col-sm-6 col-md-3" ng-repeat="event in events" ng-if="event.isPrime">
-            <div class="thumbnail" ng-if="event.isPrime">
-                <img src="{{event.imageSrc}}" alt="...">
+            <div class="thumbnail thumbwidget" ng-if="event.isPrime">
+                <span class="imgbx">
+                    <img src="{{event.imageSrc}}" alt="...">
+                </span>
                 <div class="caption">
                     <h3>{{event.startMonth}} '{{event.startYear}}</h3>
                     <p class="mb-25" ng-bind-html="event.description | to_trusted"></p>
-                    <p><a href="/#/event/{{event.id}}" class="btn btn-primary" role="button">Read More..</a></p>
+                    <p><a href="/#/event/{{event.id}}" class="btn readmore btn-primary" role="button">Read More..</a></p>
                 </div>
             </div>
         </div>
-<!--         <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img src="Content/img/trending/lamp.jpg">
-                <div class="caption">
-                    <h3>Satsangs</h3>
-                    <p>The uniqueness of Satsang with Santhi is that he starts the session with meditation. In the guided meditation he brings the participants into a state of deep relaxation. He leads them to stillness; allows them to relax with their inner witness.</p>
-                    <p><a href="/#/program/satsangs" class="btn btn-primary" role="button">Read More..</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img src="Content/img/trending/DSC_1055.JPG">
-                <div class="caption">
-                    <h3>Teacher Training Courses</h3>
-                    <p class="mb-25"> Our Teacher Training courses aim at reforming seekers into masters of yoga and aids in one’s complete transformation in accordance with the ancient Gurukula System. Join our courses to learn this art!! </p>
-                    <p><a href="/#/program/TTC" class="btn btn-primary" role="button">Read More..</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <div class="fb-page" data-href="https://www.facebook.com/SchoolOfSanthiIndia/" data-tabs="timeline" data-height="460px" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                    <blockquote cite="https://www.facebook.com/SchoolOfSanthiIndia/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/SchoolOfSanthiIndia/">School of Santhi - India</a></blockquote>
-                </div>
-            </div>
-        </div> -->
     </section>
 </section>
