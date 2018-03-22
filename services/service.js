@@ -31,47 +31,55 @@ Service.prototype.getAllPhotoNames = function() {
 };
 
 Service.prototype.SendMail = function(data) {
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'contactschoolofsanthi@gmail.com',
-            pass: 'Trivandrum123'
-        },
-        tls: {
-            rejectUnauthorized: false
-        }
-    });
 
-    // setup email data with unicode symbols
-    let mailOptions = {
-        from: '"School of Santhi" <contactschoolofsanthi@gmail.com>', // sender address
-        to: data.applicant.email, // list of receivers
-        subject: 'Confirmation of registration for ' + data.event.name + ' at School of Santhi', // Subject line
-        html: 'Hi ' + data.applicant.name + ',<br>Your request for registration for the event <b>' + data.event.name + '</b> is being processed. We will get in touch with you shortly.<br><br></br>Regards,<br> School of Santhi' // html body
-    };
-    let mailOptionsForSos = {
-        from: '"School of Santhi" <contactschoolofsanthi@gmail.com>', // sender address
-        to: 'contactschoolofsanthi@gmail.com', // list of receivers
-        subject: 'Registration for ' + data.event.name, // Subject line
-        html: 'Hi,<br>' + data.applicant.name + ' has requested to register for the event ' + data.event.name + '.<br>The details from the registration are,<br><br><b>Name :</b>    ' + data.applicant.name + '<br><b>Age :</b>    ' + data.applicant.age + '<br><b>Country :</b>    ' + data.applicant.country + '<br><b>Phone Number :</b>    ' + data.applicant.number + '<br><b>Best time to reach:</b>    ' + data.applicant.bestTime + '<br><b>Email :</b>    ' + data.applicant.email + '<br><b>Program :</b>    ' + data.event.type + '<br><b>Comments :</b> ' + data.applicant.reason + '<br><br><br>Regards,<br> School of Santhi' // html body
-    };
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log(error);
-        }
-        console.log('Message %s sent: %s', info.messageId, info.response);
-        transporter.close();
-    });
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'contactschoolofsanthi@gmail.com',
+    pass: 'Trivandrum123'
+  }
+});
 
-    transporter.sendMail(mailOptionsForSos, (error, info) => {
-        if (error) {
-            console.log(error);
-        }
-        console.log('Message %s sent: %s', info.messageId, info.response);
-        transporter.close();
-    });
+var mailOptions = {
+    from: '"School of Santhi" <contactschoolofsanthi@gmail.com>', // sender address
+    to: data.applicant.email, // list of receivers
+    subject: 'Confirmation of registration for ' + data.event.name + ' at School of Santhi', // Subject line
+    html: 'Hi ' + data.applicant.name + ',<br>Your request for registration for the event <b>' + data.event.name + '</b> is being processed. We will get in touch with you shortly.<br><br></br>Regards,<br> School of Santhi' // html body
+};
+
+var mailOptionsForSos = {
+    from: '"School of Santhi" <contactschoolofsanthi@gmail.com>', // sender address
+    to: 'contactschoolofsanthi@gmail.com', // list of receivers
+    subject: 'Registration for ' + data.event.name, // Subject line
+    html: 'Hi,<br>' + data.applicant.name + ' has requested to register for the event ' + data.event.name + '.<br>The details from the registration are,<br><br><b>Name :</b>    ' + data.applicant.name + '<br><b>Age :</b>    ' + data.applicant.age + '<br><b>Country :</b>    ' + data.applicant.country + '<br><b>Phone Number :</b>    ' + data.applicant.number + '<br><b>Best time to reach:</b>    ' + data.applicant.bestTime + '<br><b>Email :</b>    ' + data.applicant.email + '<br><b>Program :</b>    ' + data.event.type + '<br><b>Comments :</b> ' + data.applicant.reason + '<br><br><br>Regards,<br> School of Santhi' // html body
+}
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+    error.message = "error";
+    return error;
+  } else {
+    console.log('Email sent: ' + info.response);
+    info.response.data = "Your application sucessfully submitted! Please check mail for details";
+    return info.response;
+  }
+});
+
+transporter.sendMail(mailOptionsForSos, function(error, info){
+  if (error) {
+    console.log(error);
+    return error;
+    error.message = "error";
+  } else {
+    console.log('Email sent: ' + info.response);
+    info.response.data = "Your application sucessfully submitted! Please check mail for details"
+    return info.response;
+  }
+});
+console.log(transporter)
+transporter.close()
+
 };
 
 Service.prototype.EditEvent = function(event) {
@@ -331,6 +339,35 @@ Service.prototype.getEvent = function(id) {
         });
 };
 
+Service.prototype.getYoga = function(id) {
+    return new Promise(
+        function(resolve, reject) {
+            var fileName = id + '.json';
+            jsonfile.readFile('./bin/blogs/' + fileName,
+                (error, data) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(data);
+                    }
+                });
+        });
+};
+
+Service.prototype.getSanthi = function(id) {
+    return new Promise(
+        function(resolve, reject) {
+            var fileName = id + '.json';
+            jsonfile.readFile('./bin/santhiblogs/' + fileName,
+                (error, data) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(data);
+                    }
+                });
+        });
+};
 
 Service.prototype.checkLogin = function(req) {
     return new Promise(

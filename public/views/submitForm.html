@@ -6,14 +6,10 @@
       <div class="modal-body">
          
         <form name="application" role="form" novalidate>
-            <section class="row">
-                <section class="col-md-12">
-                 <div class="alert alert-success col-md-12" ng-hide="!successAlert">
-  <strong>{{successAlert}} </strong> <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-</div></section>
+            <section class="row">                
                
                 <section class = "required-message col-md-12" ng-show="application.$invalid && !application.$pristine">** Please fill all the required fields.</section>
-                <section class="col-md-12 mt-10">
+                <section class="col-md-12 mt-10" ng-if="!successAlert">
                 <div class="form-group col-md-12">
                 <label class="control-label col-md-4 text-right col-sm-4">Name:</label>
                 <div class="col-md-6 col-sm-6"><input type="text" name ="name" class="form-control" ng-model ="applicant.name" required/></div>
@@ -47,12 +43,22 @@
   <label><input type="checkbox" ng-model="applicant.checked" required>I agree to abide by the  <a data-toggle="modal" ng-click=openModal("studentRulesModal")>student rules</a> and yoga teacher's <a data-toggle="modal" ng-click=openModal("ethicalGuidelinesModal")>ethical guidelines</a>.</label>
 </div>
                     </section>
-                </section></section>
+                </section>
+                <section class="col-md-12">
+                 <div class="alert alert-success col-md-12" ng-if="successAlert">
+  <strong>{{successAlert}} </strong> <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+</div></section>
+</section>
             
           </form>
       </div>
-      <div class="modal-footer text-center">
+      <div class="modal-footer text-center" ng-if="!successAlert">
           <button type="submit" class="btn btn-primary" ng-disabled ="application.$invalid && (applicant.checked == undefined)" ng-click ="submit()">Apply</button>
         <button type="button" class="btn btn-default"  ng-click="cancel()">Cancel</button>
       </div>
+
+      <div class="modal-footer text-center" ng-if="successAlert">         
+        <button type="button" class="btn btn-success"  ng-click="cancel()">OK</button>
+      </div>
+
     </div>

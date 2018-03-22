@@ -4,9 +4,9 @@
       <div class="card row homecard" ng-repeat="blog in shanthi.blogs">
           <div class="card-body">
           <image src="{{blog.image}}" alt="Shanthi" onerror="this.onerror=null;this.src='../bin/santhiblogs/shanthi.jpg'">
-          <div data-toggle="modal" class="details" ng-click="showSelectedShanthiBlog(blog)" style="cursor:pointer" data-target="#detailedShanthiModal">
+          <div style="cursor:pointer" data-target="#detailedShanthiModal">
               <h2>{{blog.title}}</h2>
-              <p>{{blog.highlightText}} <a href="#" ng-click = "prevent($event)">More...</a></p>
+              <p>{{blog.highlightText}} <a href="/#/santhi/{{blog.id}}">More...</a></p>
           </div>
           </div>
         </div>

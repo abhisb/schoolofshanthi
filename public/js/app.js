@@ -20,6 +20,14 @@ app1.config(function($routeProvider, $locationProvider) {
             templateUrl: "views/yoga-blog.html",
             controller: 'yogaBlogHomeController'
         })
+        .when("/yoga/:yogaId", {
+            templateUrl: "views/yoga-blog-detail.html",
+            controller: 'yogaBlogDetailCtrl'
+        })
+        .when("/santhi/:santhiId", {
+            templateUrl: "views/santhi-blog-detail.html",
+            controller: 'santhiBlogDetailCtrl'
+        })
         .when("/santhispeaks", {
             templateUrl: "views/shanthi-blog.html",
             controller: 'shanthiBlogController'
@@ -259,6 +267,21 @@ app1.controller('loginController', ['$scope', '$http', function($scope, $http) {
     };
 }]);
 
+
+app1.controller('yogaBlogDetailCtrl', function($scope,  $routeParams, $location, $http, eventsService, $timeout) {
+        console.log($routeParams.yogaId)
+        $http.get('/api/yoga/getYoga/' + $routeParams.yogaId).then(function(res) {
+            $scope.details = res.data;
+        });
+});
+
+app1.controller('santhiBlogDetailCtrl', function($scope,  $routeParams, $location, $http, eventsService, $timeout) {
+        console.log($routeParams.santhiId)
+        $http.get('/api/santhi/getSanthi/' + $routeParams.santhiId).then(function(res) {
+             $scope.details = res.data;
+        });
+});
+
 app1.controller('shanthiBlogController', function($scope, $location, $http, eventsService, $timeout) {
     $scope.shanthi = {};
     $scope.shanthi.blogs = [];
@@ -290,6 +313,7 @@ app1.controller('yogaBlogHomeController', function($scope, $location, $http, eve
     $scope.getAllYogaBlogs = function() {
         $http.get('api/blog/getAllBlogs').then(function(res) {
             $scope.yoga.blogs = res.data;
+            console.log(res.data)
         });
     }
     $scope.getAllYogaBlogs();
@@ -686,6 +710,7 @@ app2.controller('eventController', function($scope, $routeParams, $http, eventsS
             $('.fb-share-button').attr('data-href', url);
         });
         $scope.submitForm = function() {
+            $scope.successAlert = false;
             var $ctrl = this;
             $uibModal.open({
                 animation: true,
@@ -816,6 +841,7 @@ app2.controller('eventController', function($scope, $routeParams, $http, eventsS
                 event: $scope.event
             };
             $http.post("/api/submit", data).then(function(response) {
+                console.log(response)
                 $scope.successAlert = response.data;
             });
         }

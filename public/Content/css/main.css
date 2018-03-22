@@ -746,6 +746,16 @@ aside.youtube {
 .modal-header h3, .side-panel h3 {
     margin:0!important;
 }
+
+.modal-title h4 {
+    font-weight: bold!important;
+}
+.modal-header {
+    background-color: #f5f5f5!important;
+}
+.modal-footer {
+    background-color: #f5f5f5!important;
+}
 .side-panel h3 {
     color: #444;
 }

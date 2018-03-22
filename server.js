@@ -22,13 +22,10 @@ app.get('/api/gallery', function(req, res) {
 })
 
 app.use(session({ secret: 'schoolofshanthi' }));
-//var activeSession;
-
 
 app.post('/api/submit', function(req, res) {
-
-    service.SendMail(req.body);
-    res.status(200).send("Your application has been submitted successfully!!");
+    var status = service.SendMail(req.body);
+    res.status(200).send("Your application sucessfully submitted! Please check mail for details");
 });
 app.post('/api/event/save', function(req, res) {
     service.SaveEvent(req.body);
@@ -71,6 +68,24 @@ app.post('/api/blog/save', function(req, res) {
 app.get('/api/event/getevent/:id', function(req, res) {
     var id = req.params.id;
     service.getEvent(id).then((result) => {
+        res.send(result);
+    }).catch(function(error) {
+        res.status(500).send(error);
+    });
+});
+
+app.get('/api/yoga/getYoga/:id', function(req, res) {
+    var id = req.params.id;
+    service.getYoga(id).then((result) => {
+        res.send(result);
+    }).catch(function(error) {
+        res.status(500).send(error);
+    });
+});
+
+app.get('/api/santhi/getSanthi/:id', function(req, res) {
+    var id = req.params.id;
+    service.getSanthi(id).then((result) => {
         res.send(result);
     }).catch(function(error) {
         res.status(500).send(error);

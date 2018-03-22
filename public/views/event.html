@@ -174,33 +174,3 @@
       </section>
    </section>
 </section>
-<div id="schedule" class="modal fade" role="dialog">
-   <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Program Schedule</h4>
-         </div>
-         <div class="modal-body">
-            <table width="100%" class="table">
-               <thead>
-                  <tr>
-                     <th width="20%">Starts by</th>
-                     <th width="20%">Ends by</th>
-                     <th width="60%">Schedule</th>
-                  </tr>
-               </thead>
-               <tr ng-repeat="item in event.schedule" ng-model="event.schedule">
-                  <td>{{item.starts}}</td>
-                  <td>{{item.ends}}</td>
-                  <td>{{item.schedule}}</td>
-               </tr>
-            </table>
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         </div>
-      </div>
-   </div>
-</div>

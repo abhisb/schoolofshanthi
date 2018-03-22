@@ -1,0 +1,22 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) window.location.reload();
+   js = d.createElement(s); js.id = id;
+   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=111410849575332";
+   fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<section class="container-fluid">
+	<section class="row form-horizontal" >
+	   <section class="col-md-12">
+	      <img class ="img" ng-src="{{details.image}}" />
+	   </section>
+	   <section class="col-md-12 text-center">
+	      <h1 class="heading">{{ details.title }}</h1>
+	   </section>
+	   <section class="col-md-12 mt-10">
+	      <p ng-bind-html="details.description | to_trusted"></p>
+	   </section>
+	</section>   
+</section>
